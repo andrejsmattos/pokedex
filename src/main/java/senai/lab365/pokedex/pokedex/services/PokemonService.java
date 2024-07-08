@@ -4,11 +4,16 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import senai.lab365.pokedex.pokedex.dtos.PokemonCapturadoRequest;
+import senai.lab365.pokedex.pokedex.dtos.PokemonResponse;
+import senai.lab365.pokedex.pokedex.dtos.PokemonSummary;
 import senai.lab365.pokedex.pokedex.dtos.PokemonVistoRequest;
 import senai.lab365.pokedex.pokedex.models.Pokemon;
 import senai.lab365.pokedex.pokedex.repositories.PokemonRepository;
 
+import java.util.List;
+
 import static senai.lab365.pokedex.pokedex.mappers.PokemonMapper.map;
+import static senai.lab365.pokedex.pokedex.mappers.PokemonMapper.mapToSummary;
 
 @Service
 public class PokemonService {
@@ -54,5 +59,17 @@ public class PokemonService {
         } else {
             throw new EntityNotFoundException();
         }
+    }
+
+    public PokemonResponse busca(Integer numero) {
+        Pokemon pokemon = repository
+                .findById(numero)
+                .orElseThrow(EntityNotFoundException::new);
+
+        return map(pokemon);
+    }
+
+    public List<PokemonSummary> lista() {
+        return mapToSummary(repository.findAll());
     }
 }
