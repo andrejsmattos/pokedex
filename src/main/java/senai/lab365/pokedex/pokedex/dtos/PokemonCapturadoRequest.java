@@ -2,6 +2,7 @@ package senai.lab365.pokedex.pokedex.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import senai.lab365.pokedex.pokedex.enums.TipoEnum;
 
 public class PokemonCapturadoRequest {
 
@@ -9,7 +10,7 @@ public class PokemonCapturadoRequest {
     @NotBlank private String nome;
     @NotBlank private String descricao;
     @NotBlank private String imagemUrl;
-    @NotNull private String tipo;
+    @NotNull private TipoEnum tipo;
     @NotBlank private String categoria;
     @NotBlank private String habitat;
     @NotNull private Double altura;
@@ -48,11 +49,11 @@ public class PokemonCapturadoRequest {
         this.imagemUrl = imagemUrl;
     }
 
-    public @NotNull String getTipo() {
+    public @NotNull TipoEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(@NotNull String tipo) {
+    public void setTipo(@NotNull TipoEnum tipo) {
         this.tipo = tipo;
     }
 

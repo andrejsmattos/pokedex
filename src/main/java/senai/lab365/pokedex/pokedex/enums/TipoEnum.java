@@ -1,4 +1,4 @@
-package br.senai.lab365.fshealth.pokedex.enums;
+package senai.lab365.pokedex.pokedex.enums;
 
 public enum TipoEnum {
     NORMAL,
